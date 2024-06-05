@@ -24,6 +24,7 @@
 .coin-item__info {
   display: flex;
   gap: 12px;
+  align-items: center;
 }
 
 .coin-item__price {

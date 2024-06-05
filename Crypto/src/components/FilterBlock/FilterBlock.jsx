@@ -1,15 +1,20 @@
-import { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles.css";
 
-const FilterBLock = () => {
+const FilterBLock = ({ coins, setCoins }) => {
   const [value, setValue] = useState("");
-  const inputRef = useRef(null);
-  console.log(inputRef);
+
+  useEffect(() => {
+    const filteredCoins = coins.filter((coin) => {
+      return coin.name.toLowerCase().includes(value.toLowerCase());
+    });
+
+    setCoins(filteredCoins);
+  }, [value]);
 
   return (
     <div className="filter-block">
       <input
-        ref={inputRef}
         onChange={(e) => {
           setValue(e.target.value);
         }}
@@ -22,4 +27,4 @@ const FilterBLock = () => {
   );
 };
 
-export default FilterBLock;
+export default React.memo(FilterBLock);
